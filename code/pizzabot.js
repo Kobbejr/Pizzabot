@@ -1,28 +1,24 @@
-// PIZZABOT 3.0
+// PIZZABOT 4.0
 
+// Hämtar elementet med id "pizzaForm"
 document
   .getElementById("pizzaForm")
+
+  // Startar funktionen när man interagerar med "submit"
   .addEventListener("submit", function (event) {
+    // Stoppar ett events default behavior. I detta fall en page reload.
     event.preventDefault();
 
     const orderName = document.getElementById("pizzaType").value;
     const orderQuantity = parseInt(document.getElementById("quantity").value);
 
-    // Kolla så att vald pizza finns på menyn
-    if (checkOrderName(orderName)) {
-      // Räkna ut pris och beredningstid baserat på antal pizzor
-      const total = totalCost(orderQuantity);
-      const time = cookingTime(orderQuantity);
+    // Räkna ut pris och beredningstid baserat på antal pizzor
+    const total = totalCost(orderQuantity);
+    const time = cookingTime(orderQuantity);
 
-      // Meddelande som används när alla val har gjorts av användaren
-      const responseMessage = `You have ordered ${orderQuantity} ${orderName} pizza(s). The pizzas will take ${time} minutes. Total cost is ${total} kr.`;
-      document.getElementById("response").textContent = responseMessage;
-
-      // Meddelande som används om vald pizza inte finns på menyn
-    } else {
-      document.getElementById("response").textContent =
-        "Sorry, the selected pizza is not on the menu. Please try again.";
-    }
+    // Meddelande som används när alla val har gjorts av användaren
+    const responseMessage = `You have ordered ${orderQuantity} ${orderName} pizza(s). The pizzas will take ${time} minutes. Total cost is ${total} kr.`;
+    document.getElementById("response").textContent = responseMessage;
   });
 
 // Funktion som kollar att användarens val finns på menyn
